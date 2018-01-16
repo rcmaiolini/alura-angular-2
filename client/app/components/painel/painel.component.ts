@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ElementRef } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -10,8 +10,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PainelComponent implements OnInit {
 
     @Input() titulo: string;
+    elemento: ElementRef;
+
+    constructor(elemento: ElementRef) {
+        this.elemento = elemento;
+    }
 
     ngOnInit() {
         this.titulo = this.titulo.length > 10 ? this.titulo.substr(0,10) + '...' : this.titulo;
+    }
+
+    fadeOut(cb) {
+        $(this.elemento.nativeElement).fadeOut(cb);
     }
 }
